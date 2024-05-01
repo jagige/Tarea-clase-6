@@ -15,27 +15,17 @@ Al hacer click en "calcular", mostrar en un elemento pre-existente el mayor sala
 Punto bonus: si hay inputs vacíos, ignorarlos en el cálculo (no contarlos como 0).
 */
 
+function grupo(numero){
+    const familiar = document.createElement('label');//creo un label
+    familiar.textContent ="Edad del familiar nº "+numero+":";//escribo el texto del label
+    const input = document.createElement('input');//creo un nuevo cuadro de texto
+    familiar.appendChild(input).type="number";//agrego al label pidiendo que sea de números
+    const br = document.createElement('br');//creo un br para separar
+    familiar.appendChild(br)
+    const $edadIntegrantes = document.querySelector("#edadIntegrantes");//selecciono el div
+return $edadIntegrantes.appendChild(familiar);//digo que el div tenga dentro el label con su texto
+}
 
-const familiar = document.createElement('label');//creo un label
-familiar.textContent ="Edad del familiar nº ";//escribo el texto del label
-const input = document.createElement('input');//creo un nuevo cuadro de texto
-familiar.appendChild(input).type="number";//agrego al label pidiendo que sea de números
-const br = document.createElement('br');//creo un br para separar
-familiar.appendChild(br)
-
-//////////////////////////////
-const familiar2 = document.createElement('label');//creo un label
-familiar2.textContent ="Edad del familiar nº ";//escribo el texto del label
-const input2 = document.createElement('input');//creo un nuevo cuadro de texto
-familiar2.appendChild(input2).type="number";//agrego al label pidiendo que sea de números
-const br2 = document.createElement('br');//creo un br para separar
-familiar2.appendChild(br2)
-////////////////////////////////
-
-const $edadIntegrantes = document.querySelector("#edadIntegrantes");//selecciono el div 
-$edadIntegrantes.appendChild(familiar);//digo que el div tenga dentro el label con su texto
-//////////////
-$edadIntegrantes.appendChild(familiar2);
 
 /* Esto es lo que agrego en el html
 <label>Edad del integrante nº 1:
@@ -43,4 +33,7 @@ $edadIntegrantes.appendChild(familiar2);
 </label>
 */
 
+grupo(1);
+grupo(2);
+grupo(45);
 
