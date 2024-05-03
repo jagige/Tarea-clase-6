@@ -38,44 +38,24 @@ $botonEnviar.onclick = function(){
    let $grupoFamiliar = Number(document.querySelector("#grupoFamiliar").value);
    let grupoF = $grupoFamiliar;
 
-  
-if($edadIntegrantes.innerHTML === ""){
+   if($edadIntegrantes.innerHTML === ""){
     for(let i=0; i<grupoF; i++){
         crearCampoEdades(i+1);
     }
-}else{$edadIntegrantes.innerHTML = "";
-    for(let i=0; i<grupoF; i++){
-       crearCampoEdades(i+1);
+    }else{$edadIntegrantes.innerHTML = "";
+        for(let i=0; i<grupoF; i++){
+         crearCampoEdades(i+1);
+        }
     }
 }
-}
 
+//Botón para reiniciar
 const $botonBorrar = document.querySelector("#botonBorrar");
 $botonBorrar.onclick = function(){
     $edadIntegrantes.innerHTML = "";
 }
 
 
-/*
-const element = document.getElementById("edadIntegrantes");
-element.remove();
 
-//esto borra un hijo en este caso el div entero
-const padre = document.getElementById("formulario");
-const hijo = document.querySelector("#edadIntegrantes");
-const borrarNodo = padre.removeChild(hijo);
-
-Para eliminar todos los hijos de un elemento:
-const element = document.getElementById("edadIntegrantes");
-while (element.firstChild) {
-  element.removeChild(element.firstChild);
-}
-
-así borro lo que hay dentro del div
-const hijo = document.querySelector("#edadIntegrantes");
-
-document.getElementById("edadIntegrantes").innerHTML = "";
-console.log(hijo);
-*/
 
 
