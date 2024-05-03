@@ -14,26 +14,68 @@ Al hacer click en "calcular", mostrar en un elemento pre-existente el mayor sala
 
 Punto bonus: si hay inputs vacíos, ignorarlos en el cálculo (no contarlos como 0).
 */
+const $edadIntegrantes = document.querySelector("#edadIntegrantes");//selecciono el div
 
-function grupo(numero){
+function crearCampoEdades(numero){
     const familiar = document.createElement('label');//creo un label
     familiar.textContent ="Edad del familiar nº "+numero+":";//escribo el texto del label
     const input = document.createElement('input');//creo un nuevo cuadro de texto
     familiar.appendChild(input).type="number";//agrego al label pidiendo que sea de números
     const br = document.createElement('br');//creo un br para separar
-    familiar.appendChild(br)
-    const $edadIntegrantes = document.querySelector("#edadIntegrantes");//selecciono el div
-return $edadIntegrantes.appendChild(familiar);//digo que el div tenga dentro el label con su texto
+    familiar.appendChild(br)//agrego el br
+return $edadIntegrantes.appendChild(familiar);//digo que el div tenga dentro el label con su texto, input y br
 }
 
-
-/* Esto es lo que agrego en el html
+/* Esto es lo que la función agrega en el html
 <label>Edad del integrante nº 1:
     <input type="number"><br>
 </label>
 */
 
-grupo(1);
-grupo(2);
-grupo(45);
+const $botonEnviar = document.querySelector("#botonEnviar");
+//Atrapo el número de integrantes para crear la misma cantidad de cuadros
+$botonEnviar.onclick = function(){
+   let $grupoFamiliar = Number(document.querySelector("#grupoFamiliar").value);
+   let grupoF = $grupoFamiliar;
+
+  
+if($edadIntegrantes.innerHTML === ""){
+    for(let i=0; i<grupoF; i++){
+        crearCampoEdades(i+1);
+    }
+}else{$edadIntegrantes.innerHTML = "";
+    for(let i=0; i<grupoF; i++){
+       crearCampoEdades(i+1);
+    }
+}
+}
+
+const $botonBorrar = document.querySelector("#botonBorrar");
+$botonBorrar.onclick = function(){
+    $edadIntegrantes.innerHTML = "";
+}
+
+
+/*
+const element = document.getElementById("edadIntegrantes");
+element.remove();
+
+//esto borra un hijo en este caso el div entero
+const padre = document.getElementById("formulario");
+const hijo = document.querySelector("#edadIntegrantes");
+const borrarNodo = padre.removeChild(hijo);
+
+Para eliminar todos los hijos de un elemento:
+const element = document.getElementById("edadIntegrantes");
+while (element.firstChild) {
+  element.removeChild(element.firstChild);
+}
+
+así borro lo que hay dentro del div
+const hijo = document.querySelector("#edadIntegrantes");
+
+document.getElementById("edadIntegrantes").innerHTML = "";
+console.log(hijo);
+*/
+
 
