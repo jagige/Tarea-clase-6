@@ -14,6 +14,7 @@ Al hacer click en "calcular", mostrar en un elemento pre-existente el mayor sala
 
 Punto bonus: si hay inputs vacíos, ignorarlos en el cálculo (no contarlos como 0).
 */
+const $resultados = document.querySelector("#resultados");
 const $edadIntegrantes = document.querySelector("#edadIntegrantes");//selecciono el div
 
 function crearCampoEdades(numero){
@@ -21,6 +22,7 @@ function crearCampoEdades(numero){
     familiar.textContent ="Edad del familiar nº "+numero+":";//escribo el texto del label
     const input = document.createElement('input');//creo un nuevo cuadro de texto
     familiar.appendChild(input).type="number";//agrego al label pidiendo que sea de números
+    input.setAttribute("class","edadesFamilia")//digo que los input tengan clase edadesFamilia
     const br = document.createElement('br');//creo un br para separar
     familiar.appendChild(br)//agrego el br
 return $edadIntegrantes.appendChild(familiar);//digo que el div tenga dentro el label con su texto, input y br
@@ -31,31 +33,71 @@ return $edadIntegrantes.appendChild(familiar);//digo que el div tenga dentro el 
     <input type="number"><br>
 </label>
 */
-
+const $botonCalcular = document.querySelector("#botonCalcular");
 const $botonEnviar = document.querySelector("#botonEnviar");
 //Atrapo el número de integrantes para crear la misma cantidad de cuadros
+//Al mismo tiempo aparece el botón calcular
 $botonEnviar.onclick = function(){
    let $grupoFamiliar = Number(document.querySelector("#grupoFamiliar").value);
-   let grupoF = $grupoFamiliar;
+   
+console.log($grupoFamiliar)
+   if($grupoFamiliar == 0){
+    $botonCalcular.style.display = "none";
+    document.querySelector("#advertencia").textContent = "Debe ingresar un número"
+   }else {
+    $botonCalcular.style.display = "block";
+    document.querySelector("#advertencia").innerHTML ="";
+   }
 
    if($edadIntegrantes.innerHTML === ""){
-    for(let i=0; i<grupoF; i++){
+    for(let i=0; i<$grupoFamiliar; i++){
         crearCampoEdades(i+1);
     }
     }else{$edadIntegrantes.innerHTML = "";
-        for(let i=0; i<grupoF; i++){
+        for(let i=0; i<$grupoFamiliar; i++){
          crearCampoEdades(i+1);
         }
     }
+   
 }
 
-//Botón para reiniciar
+//Botón para reiniciar, también oculta el botón calcular
 const $botonBorrar = document.querySelector("#botonBorrar");
 $botonBorrar.onclick = function(){
     $edadIntegrantes.innerHTML = "";
+    $botonCalcular.style.display = "none";
+    $resultados.style.display = "none"
 }
 
+//Obtengo los NodeList de la clase edadesFamilia y lo convierto en numeros para
+//agregarlo a un array, teniendo en cuenta que el campo vacio se reemplace por cero
+// para que no afecte al calculo del promedio
+$botonCalcular.onclick = function(){
+    let $edadesFamilia = document.querySelectorAll(".edadesFamilia");
+    const arrayEdadesFamilia = []
+    for(let i=0; i<$edadesFamilia.length; i++){
+        arrayEdadesFamilia.push(parseInt($edadesFamilia[i].value));
+        if($edadesFamilia[i].value === ""){
+            arrayEdadesFamilia.pop();
+            arrayEdadesFamilia.push(0);
+        }
+      }
+      console.log(arrayEdadesFamilia);
+ //una vez obtenido los numeros empiezo a clcular
 
 
+    let acumulador=0;
+     for(let i=0; i<arrayEdadesFamilia.length; i++){
+     acumulador += arrayEdadesFamilia[i];
+    }
+
+console.log("numero maximo "+ Math.max(...arrayEdadesFamilia));
+console.log("numero minimo "+ Math.min(...arrayEdadesFamilia));
+console.log("el promedio "+ acumulador/arrayEdadesFamilia.length);
+ $resultados.style.display = "block"
+ document.querySelector("#mayorEdad").textContent = Math.max(...arrayEdadesFamilia);
+ document.querySelector("#menorEdad").textContent = Math.min(...arrayEdadesFamilia);
+ document.querySelector("#promedioEdad").textContent = acumulador/arrayEdadesFamilia.length;
+}
 
 
