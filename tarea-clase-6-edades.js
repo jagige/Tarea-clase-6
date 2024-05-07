@@ -30,7 +30,7 @@ function crearCampoEdades(numero) {
 
 /* Esto es lo que la función agrega en el html
 <label>Edad del integrante nº 1:
-    <input type="number"><br>
+    <input type="number" class="edadesFamilia"><br>
 </label>
 */
 const $botonCalcular = document.querySelector("#botonCalcular");
