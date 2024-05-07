@@ -59,4 +59,3 @@ $botonCalcular.onclick = function(){
     document.querySelector("#salarioMensualPromedio").textContent ="El salario mensual promedio es: "+ CalcularPromedio(arraysalarios)/12
 }
 
-
