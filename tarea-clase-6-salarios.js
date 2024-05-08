@@ -55,7 +55,7 @@ $botonCalcular.onclick = function(){
     }    
     document.querySelector("#mayorSalarioAnual").textContent ="El mayor salario anual es: "+ Math.max(...arraysalarios);
     document.querySelector("#menorSalarioAnual").textContent ="El menor salario anual es: "+ Math.min(...arraysalarios);
-    document.querySelector("#salarioAnualPromedio").textContent ="El salario anual promedio es: "+ CalcularPromedio(arraysalarios);
-    document.querySelector("#salarioMensualPromedio").textContent ="El salario mensual promedio es: "+ CalcularPromedio(arraysalarios)/12
+    document.querySelector("#salarioAnualPromedio").textContent ="El salario anual promedio es: "+ calcularPromedio(arraysalarios);
+    document.querySelector("#salarioMensualPromedio").textContent ="El salario mensual promedio es: "+ calcularPromedio(arraysalarios)/12
 }
 
