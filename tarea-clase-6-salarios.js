@@ -36,7 +36,7 @@ $botonBorrar.onclick = function () {
     padre.removeChild(padre.lastChild)
 }
 
-function CalcularPromedio(numeros){
+function calcularPromedio(numeros){
     let resultado = 0;
     for(let i =0; i < numeros.length; i++){
       resultado = resultado + numeros[i]
